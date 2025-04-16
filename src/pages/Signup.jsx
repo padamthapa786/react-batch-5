@@ -1,52 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
+import Input from "../components/input";
+import { useForm } from "react-hook-form";
 
 const Signup = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const sendatatoApi = async(data)=>{
+     try {
+      const response = await fetch("http://localhost:3000/users",  {
+       method: "POST",
+       body: JSON.stringify(data),
+       headers:{
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        
+       }
+      })
+      const dat = await response.json();
+      console.log(dat);
+     } catch (error) {
+      console.error("Error:", error);
+     }
+  }
+
   return (
-    <div className=" flex items-center justify-center w-full">
-      <form className="space-y-4 max-w-[300px] flex flex-col w-full">
+    <div className=" flex flex-col items-center justify-start w-full gap-3">
+      <form
+        onSubmit={handleSubmit((data) =>sendatatoApi(data))}
+        className="space-y-4 max-w-[300px] flex flex-col w-full"
+      >
         <div>
-          <label
-            htmlFor="username"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Username
-          </label>
-          <input
+          <Input
+            title={"Username"}
             type="text"
             id="username"
-            name="username"
-            required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            {...register("username", {
+              required:"Username is required",
+              
+            } )}
           />
+          {
+            errors.username && (
+              <span className=" text-red-500">
+                {errors.username.message}
+              </span>
+            )
+          }
+
         </div>
         <div className=" w-full">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Email
-          </label>
-          <input
-            type="email"
+          <Input
+            title={"Email"}
+            type="text"
             id="email"
-            name="email"
-            required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            {...register("email")}
           />
         </div>
         <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Password
-          </label>
-          <input
+          <Input
+            title={"Password"}
             type="password"
             id="password"
-            name="password"
-            required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            {...register("password")}
           />
         </div>
         <div>
@@ -58,6 +77,7 @@ const Signup = () => {
           </button>
         </div>
       </form>
+      <div></div>
     </div>
   );
 };
