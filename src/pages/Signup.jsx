@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Input from "../components/input";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Signup = () => {
   const {
@@ -12,7 +13,7 @@ const Signup = () => {
   const sendatatoApi = async(data)=>{
      try {
       const response = await fetch("http://localhost:3000/users",  {
-       method: "POST",
+       method: "GET",
        body: JSON.stringify(data),
        headers:{
         "Content-Type": "application/json",
@@ -21,14 +22,16 @@ const Signup = () => {
        }
       })
       const dat = await response.json();
-      console.log(dat);
+      toast.success("User created successfully")
      } catch (error) {
       console.error("Error:", error);
+      toast.error("Error creating user")  
      }
   }
 
   return (
     <div className=" flex flex-col items-center justify-start w-full gap-3">
+      <ToastContainer />
       <form
         onSubmit={handleSubmit((data) =>sendatatoApi(data))}
         className="space-y-4 max-w-[300px] flex flex-col w-full"

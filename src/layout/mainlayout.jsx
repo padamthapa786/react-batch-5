@@ -6,6 +6,7 @@ const MainLayout = () => {
 
   return (
     <>
+    
       <header className="bg-gray-800 text-white p-4 text-center">
         <h1>Welcome to Our Website</h1>
         <Nav />
