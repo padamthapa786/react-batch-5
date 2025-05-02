@@ -1,56 +1,40 @@
 import React, { createContext, useEffect, useState } from "react";
 import Contact from "../components/contact";
 import axios from "axios";
+import { set } from "react-hook-form";
+import { FaTruckLoading } from "react-icons/fa";
+import usefetch from "../hook/usefetch";
+import VideoList from "./videos";
+import { http } from "../config/axios";
 
 //props drilling
 export const datacontext = createContext();
 
 const HomePage = () => {
-  const [user, setUser] = useState({
-    userId: "1",
-    title: "padam",
-  });
-  const data = "i am padam";
-  const data2 = "hello world";
-  const dataall = {
-    data,
-    data2,
-  };
+  const getUserFromLocalstorage = localStorage.getItem("user");
+  const dataparse = JSON.parse(getUserFromLocalstorage);
+  console.log(dataparse);
+
+  const token = localStorage.getItem("accessToken");
+
   useEffect(() => {
-    datafetch();
+    usefetch();
   }, []);
 
-  const datafetch = async () => {
+  const usefetch = async () => {
     try {
-      const response = await axios.post(
-        "https://jsonplaceholder.typicode.com/todos/1", data, {
-          
-        }
-      );
-      setUser(response.data);
+      const res = await http.get("/user/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(res);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.log(error);
     }
   };
 
-  return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-4">Home Page</h1>
-      <p className="text-lg mb-4">Welcome to the Home Page!</p>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded">
-        Fetch Data
-      </button>
-
-      <div className=" flex  flex-col">
-        <strong>User ID: </strong> {user.userId}
-        <strong>Title:</strong> {user.title}
-        <strong>Completed:</strong> {user.completed ? "true" : "false"}
-      </div>
-      <datacontext.Provider value={dataall}>
-        <Contact />
-      </datacontext.Provider>
-    </div>
-  );
+  return <div>Myname is :{dataparse.username}</div>;
 };
 
 export default HomePage;

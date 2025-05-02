@@ -12,13 +12,12 @@ const Signup = () => {
 
   const sendatatoApi = async(data)=>{
      try {
-      const response = await fetch("http://localhost:3000/users",  {
-       method: "GET",
+      const response = await fetch("http://localhost:3000/user/signup",  {
+       method: "POST",
        body: JSON.stringify(data),
        headers:{
         "Content-Type": "application/json",
         "Accept": "application/json",
-        
        }
       })
       const dat = await response.json();
