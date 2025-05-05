@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import Aboutpage from "./pages/Aboutpage";
 import Signup from "./pages/Signup";
 import Login from "./pages/login";
+import PostForm from "./components/postForm";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {
+        path:"/postform",
+        element:<PostForm/>
+      }
     ],
   },
 ]);

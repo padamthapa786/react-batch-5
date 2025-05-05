@@ -14,6 +14,9 @@ export const Nav = [
     {
         title:"Login",
         url:"/login"
+    },{
+        title:"Post",
+        url:"/postform"
     }
 
 ]

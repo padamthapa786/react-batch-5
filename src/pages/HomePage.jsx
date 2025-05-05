@@ -34,7 +34,7 @@ const HomePage = () => {
     }
   };
 
-  return <div>Myname is :{dataparse.username}</div>;
+  return <div>Myname is :{dataparse?.username || "data fetching"}</div>;
 };
 
 export default HomePage;
