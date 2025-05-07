@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
+import { http } from "../config/axios";
 
 const PostForm = () => {
   const {
@@ -10,7 +11,7 @@ const PostForm = () => {
   } = useForm();
 
   const [selectedImages, setSelectedImages] = useState([]);
-  console.log(selectedImages)
+  console.log(selectedImages);
 
   const onDrop = useCallback((acceptedFiles) => {
     const fileWithPreview = acceptedFiles.map((file) =>
@@ -31,20 +32,26 @@ const PostForm = () => {
   });
 
   const onSubmit = (data) => {
-
-   const formData = new FormData()
-   formData.append("title", data.title)
-   formData.append("content", data.content)
-   selectedImages.forEach((file)=> {
-    formData.append("images",file)
-   })
-   senDataToApi(formData)
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("content", data.content);
+    selectedImages.forEach((file) => {
+      formData.append("images", file);
+    });
+    senddataToApi(formData)
   };
 
 
-  const senDataToApi = (formData) => {
-     
+  const  senddataToApi = async (formData)=> {
+       try {
+        const response = await http.post("/post", formData)
+        console.log(response)
+
+       } catch (error) {
+          console.log(error)
+       }
   }
+
 
   return (
     <form
@@ -104,8 +111,6 @@ const PostForm = () => {
           </p>
         </div>
       </div>
-
-
 
       {selectedImages.length > 0 && (
         <div className=" grid grid-cols-5 gap-3 mt-3">
