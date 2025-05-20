@@ -7,6 +7,7 @@ import usefetch from "../hook/usefetch";
 import VideoList from "./videos";
 import { http } from "../config/axios";
 import Paginate from "./pagination";
+import ShopPage from "../components/shop";
 
 //props drilling
 export const datacontext = createContext();
@@ -37,7 +38,10 @@ const HomePage = () => {
 
   return <div>Myname is :{dataparse?.username || "data fetching"}
   <div>
-    <Paginate/>
+    {/* <Paginate/> */}
+    <ShopPage/>
+
+
   </div>
   </div>;
 };

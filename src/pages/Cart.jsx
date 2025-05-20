@@ -1,17 +1,20 @@
 import React from "react";
-import useStore from "../store/zustandstore";
+import { useCart } from "../store/store";
 
 const Cart = () => {
-  const { cart } = useStore();
+  const { cartItem } = useCart();
 
   return (
     <>
-      {cart.length === 0 ? (
+      {cartItem.length === 0 ? (
         <p>No item Available</p>
       ) : (
         <ul>
-          {cart.map((value, index) => (
-            <li>{value.name}</li>
+          {cartItem.map((value, index) => (
+            <div className=" flex  gap-4 border-b">
+              <li>Product Name : {value.name}</li>
+              <li>Product Price: {value.price}</li>
+            </div>
           ))}
         </ul>
       )}

@@ -5,6 +5,7 @@ import Aboutpage from "./pages/Aboutpage";
 import Signup from "./pages/Signup";
 import Login from "./pages/login";
 import PostForm from "./components/postForm";
+import Cart from "./pages/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <Aboutpage />,
+      },
+      {
+        path: "/cart",
+        element: <Cart/>
       },
 
       {
