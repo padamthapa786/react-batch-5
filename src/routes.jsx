@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/login";
 import PostForm from "./components/postForm";
 import Cart from "./pages/Cart";
+import OnePerson from "./components/oneperson";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,8 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+        
+        
       },
       {
         path: "/about",
@@ -28,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path:"product/:id",
+        element:<OnePerson/>
       },
       {
         path: "/login",

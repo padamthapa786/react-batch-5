@@ -8,6 +8,8 @@ import VideoList from "./videos";
 import { http } from "../config/axios";
 import Paginate from "./pagination";
 import ShopPage from "../components/shop";
+import { Debounce } from "../components/debounce";
+import Persons from "../components/persons";
 
 //props drilling
 export const datacontext = createContext();
@@ -36,14 +38,18 @@ const HomePage = () => {
     }
   };
 
-  return <div>Myname is :{dataparse?.username || "data fetching"}
-  <div>
-    {/* <Paginate/> */}
-    <ShopPage/>
+  return (
+    <div>
+      Myname is :{dataparse?.username || "data fetching"}
+      <div>
+        {/* <Paginate/> */}
+        {/* <ShopPage/> */}
 
-
-  </div>
-  </div>;
+        {/* <Debounce /> */}
+        <Persons/>
+      </div>
+    </div>
+  );
 };
 
 export default HomePage;

@@ -11,3 +11,7 @@ export const http = axios.create({
         Authorization:`Bearer ${token}`
     }
 })
+
+http.interceptors.request.use({
+    
+})

@@ -89,3 +89,16 @@ export const productList = [
       price: 45.0,
     },
   ];
+
+  export const personsData = [
+    { id: 1, name: 'John Doe' , age:23},
+    { id: 2, name: 'Jane Smith', age:25, hobbies: ["reading", "writing"] },
+    { id: 3, name: 'Alice Johnson', age:30 },
+    { id: 4, name: 'Bob Brown', age:28 },
+    { id: 5, name: 'Charlie Davis', age:22 },
+    { id: 6, name: 'Diana Prince', age:27 },
+    { id: 7, name: 'Ethan Hunt', age:29 },
+    { id: 8, name: 'Fiona Apple', age:24 },
+    { id: 9, name: 'George Clooney', age:31 },
+    { id: 10, name: 'Hannah Montana', age:26 },
+  ];
